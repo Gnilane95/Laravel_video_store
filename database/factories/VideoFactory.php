@@ -17,7 +17,12 @@ class VideoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title'=>fake()->text(10),
+            'description'=>fake()->text(120),
+            'url_img'=>"https://source.unsplash.com/640x480/?person?/1",
+            'nationality'=>fake()->country(),
+            'year_created'=>fake()->year(),
+            'actors'=>fake()->name(),
         ];
     }
 }

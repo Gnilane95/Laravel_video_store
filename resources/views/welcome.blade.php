@@ -1,4 +1,4 @@
-<x-layout title="Accueil">
+{{-- <x-layout title="Accueil">
     <div class="bg-white lg:mx-72 py-14 text-center text-black">
         <h1 class="uppercase font-black lg:text-5xl md:text-7xl">Jane Bloglife</h1>
         <h2 class="lg:text-sm md:text-lg pt-4 font-semibold">Welcome to the blog of <span class="text-white bg-black p-1">Jane's world</span></h2>
@@ -14,4 +14,4 @@
         </div>
     </div>
     @include('partials.contents._content')
-</x-layout>
+</x-layout> --}}
