@@ -45,9 +45,9 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Video $video)
     {
-        //
+        return view ('pages.show', compact('video'));
     }
 
     /**
@@ -79,8 +79,9 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Video $video)
     {
-        //
+        $video->delete();
+        return redirect()->route('home')->with('status','Film bien supprimé');
     }
 }
