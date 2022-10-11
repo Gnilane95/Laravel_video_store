@@ -16,7 +16,7 @@
                         {{ $category->name }}
                     </p>
                     <div>
-                        <a href="" class="btn btn-primary btn-sm mr-3">Modifier</a>
+                        <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary btn-sm mr-3">Modifier</a>
                         <x-link-delete routeName="category.delete" :itemId="$category->id" linkName="Supprimer" />
                     </div>
                 </div>

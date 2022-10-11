@@ -67,7 +67,8 @@ class ListCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = ListeCategory::Find($id);
+        return view('pages.edit-category', compact('category'));
     }
 
     /**
@@ -79,7 +80,15 @@ class ListCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = ListeCategory::find($id);
+        $request->validate([
+            'name'=>'required|string|max:20|min:3'
+        ]);
+        $category->update([
+            'name'=>$request->name,
+            'updated_at'=>now()
+        ]);
+        return redirect()->route('category.home')->with('status','Catégorie modifiée');
     }
 
     /**

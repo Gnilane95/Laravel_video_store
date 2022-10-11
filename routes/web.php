@@ -25,6 +25,8 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function(){
     Route::get('list-category', [ListCategoryController::class, 'index'])->name("category.home");
     Route::post('/list-category', [ListCategoryController::class, 'store'])->name("category.store");
     Route::get('/list-category/delete/{id}', [ListCategoryController::class, 'delete'])->name("category.delete");
+    Route::get('/list-category/edit/{id}', [ListCategoryController::class, 'edit'])->name("category.edit");
+    Route::put('/list-category/update/{id}', [ListCategoryController::class, 'update'])->name("category.update");
 });
 
 require __DIR__.'/auth.php';
