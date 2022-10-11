@@ -88,8 +88,14 @@ class ListCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $category = ListeCategory::find($id);
+        if (!$category) {
+            abort(404);
+        };
+
+        $category->delete();
+        return back()->with('status','La catégorie est bien supprimé ');
     }
 }

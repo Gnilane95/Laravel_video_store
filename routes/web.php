@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function(){
     })->name('dashboard');
     Route::get('list-category', [ListCategoryController::class, 'index'])->name("category.home");
     Route::post('/list-category', [ListCategoryController::class, 'store'])->name("category.store");
+    Route::get('/list-category/delete/{id}', [ListCategoryController::class, 'delete'])->name("category.delete");
 });
 
 require __DIR__.'/auth.php';
