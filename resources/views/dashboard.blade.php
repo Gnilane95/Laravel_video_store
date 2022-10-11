@@ -9,12 +9,12 @@
     </x-slot>
 
     <div class="container">
-        <h1 class="uppercase text-xl text-red-700 font-black">
+        <h1 class="uppercase text-xl text-red-700 font-black pt-5">
             Bienvenue <span class="text-primary-focus underline">{{ Auth::user()->name }}</span> sur ton Dashbord
         </h1>
         <div class="py-12">
             @auth
-                <a href="" class="{{ $styleLink }}">Liste des catégories</a>
+                <a href="{{ route('category.home') }}" class="{{ $styleLink }}">Liste des catégories</a>
             @endauth
         </div>
     </div>
