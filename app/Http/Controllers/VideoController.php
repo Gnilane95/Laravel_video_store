@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -54,11 +55,11 @@ class VideoController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function edit($id)
+    public function edit(Video $video)
     {
-        //
+        return view('pages.edit', compact('video'));
     }
 
     /**
@@ -66,11 +67,37 @@ class VideoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Video $video)
     {
-        //
+        //verify if file exist and delete previous img
+        if ($request->hasFile('url_img')) {
+            //Delete previous img
+            Storage::delete($video->url_img);
+            //Store the new img
+            $video->url_img = $request->file('url_img')->store('videos');
+        }
+
+        $request->validate([
+            'title'=>'required|min:5|string|max:180',
+            'actors'=>'required|min:5|string|max:180',
+            'nationality'=>'required|min:5|string|max:180',
+            'year_created'=>'required|integer|min:4',
+            'description'=>'required||min:20|max:1000|string',
+            'url_img'=>'required|image|mimes:png,jpg,jpeg,webp|max:5000'
+
+        ]);
+        $video->update([
+            'title'=>$request->title,
+            'actors'=>$request->actors,
+            'nationality'=>$request->nationality,
+            'year_created'=>$request->year_created,
+            'description'=>$request->description,
+            'url_img'=>$video->url_img,
+            'updated_at'=>now()
+        ]);
+        return redirect()->route('home')->with('status','Film modifié');
     }
 
     /**
