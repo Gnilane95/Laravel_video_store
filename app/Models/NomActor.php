@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\NomActor;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Video extends Model
+class NomActor extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function actors()
+    public function videos()
     {
-        return $this->hasMany(NomActor::class);
+        return $this->belongsTo(Video::class);
     }
 }

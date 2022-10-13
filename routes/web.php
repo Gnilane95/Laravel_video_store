@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\NomActorController;
 use App\Http\Controllers\ListCategoryController;
 
 /*
@@ -17,6 +18,7 @@ use App\Http\Controllers\ListCategoryController;
 
 Route::get('/', [VideoController::class, 'index'])->name("home");
 Route::resource('videos', VideoController::class);
+Route::post('/actor/{id}', [NomActorController::class,'store'])->name("actor.store");
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function(){
     Route::get('/', function () {

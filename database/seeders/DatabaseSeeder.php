@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Actor;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         Video::factory(20)->create();
         User::factory(10)->create();
+        // Actor::factory(20)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

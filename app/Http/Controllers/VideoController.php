@@ -48,6 +48,7 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
+        // dd($video);
         return view ('pages.show', compact('video'));
     }
 
@@ -71,6 +72,7 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
+        // dd($request);
         //verify if file exist and delete previous img
         if ($request->hasFile('url_img')) {
             //Delete previous img
@@ -85,7 +87,7 @@ class VideoController extends Controller
             'nationality'=>'required|min:5|string|max:180',
             'year_created'=>'required|integer|min:4',
             'description'=>'required||min:20|max:1000|string',
-            'url_img'=>'required|image|mimes:png,jpg,jpeg,webp|max:5000'
+            'url_img'=>'required|image|mimes:png,jpg,jpeg|max:5000'
 
         ]);
         $video->update([

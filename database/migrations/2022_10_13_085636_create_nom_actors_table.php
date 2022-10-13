@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('actors', function (Blueprint $table) {
+        Schema::create('nom_actors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('post_id')->onDelete('cascade');
+            $table->foreignId('video_id')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actors');
+        Schema::dropIfExists('nom_actors');
     }
 };
