@@ -5,7 +5,7 @@
             @csrf
             @method('PUT')
             <div class="mt-10">
-                <input type="text" name="name" class="@error('category border-red-500') @enderror my-3" value="{{ old('name', $category->name) }}">
+                <input type="text" name="name" class="@error('category border-red-500')@enderror my-3" value="{{ old('name', $category->name) }}">
                 <x-error-msg name="name" />
                 <button type="submit" class="btn btn-primary block">Modifier</button>
             </div>

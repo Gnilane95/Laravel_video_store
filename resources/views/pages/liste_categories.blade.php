@@ -1,6 +1,6 @@
 <x-layouts.main-layout title="Catégories">
     <div class="container">
-        <h1 class="font-black text-red-800 text-4xl underline underline-offset-2 pt-5 text-center">Gestion les catégories</h1>
+        <h1 class="font-black text-red-800 text-4xl underline underline-offset-2 pt-5 text-center">Gestion des catégories</h1>
         <form action="{{ route('category.store') }}" method="POST">
             @csrf
             <div class="mt-10">

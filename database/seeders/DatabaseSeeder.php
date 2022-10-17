@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Video::factory(20)->create();
+        // Video::factory(20)->create();
         User::factory(10)->create();
         // Actor::factory(20)->create();
 

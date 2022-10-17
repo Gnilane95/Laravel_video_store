@@ -26,7 +26,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
@@ -37,7 +37,27 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'title'=>'required|min:5|string|max:180',
+        'actors'=>'required|min:5|string|max:180',
+        'nationality'=>'required|min:5|string|max:180',
+        'year_created'=>'required|integer|min:4',
+        'description'=>'required||min:20|max:1000|string',
+        'url_img'=>'required|sometimes|image|mimes:png,jpg,jpeg,webp|max:5000'
+
+        ]);
+        $validateImg = $request->file('url_img')->store('videos');
+
+        Video::create([
+        'title'=>$request->title,
+        'actors'=>$request->actors,
+        'nationality'=>$request->nationality,
+        'year_created'=>$request->year_created,
+        'description'=>$request->description,
+        'url_img'=>$validateImg,
+        'updated_at'=>now()
+        ]);
+        return redirect()->route('home')->with('status','Film ajouté');
     }
 
     /**
@@ -73,7 +93,7 @@ class VideoController extends Controller
     public function update(Request $request, Video $video)
     {
         // dd($request);
-        //verify if file exist and delete previous img
+        // verify if file exist and delete previous img
         if ($request->hasFile('url_img')) {
             //Delete previous img
             Storage::delete($video->url_img);
@@ -87,7 +107,7 @@ class VideoController extends Controller
             'nationality'=>'required|min:5|string|max:180',
             'year_created'=>'required|integer|min:4',
             'description'=>'required||min:20|max:1000|string',
-            'url_img'=>'required|image|mimes:png,jpg,jpeg|max:5000'
+            'url_img'=>'required|sometimes|image|mimes:png,jpg,jpeg,webp|max:5000'
 
         ]);
         $video->update([
@@ -99,7 +119,7 @@ class VideoController extends Controller
             'url_img'=>$video->url_img,
             'updated_at'=>now()
         ]);
-        return redirect()->route('home')->with('status','Film modifié');
+        return redirect()->route('videos.show', $video->id)->with('status','Film modifié');
     }
 
     /**

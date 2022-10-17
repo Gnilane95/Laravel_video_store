@@ -9,29 +9,22 @@
             <p class="text-xl"><span class="font-bold">Description :</span> {{ $video->description }}</p>
             <p class="text-xl"><span class="font-bold">Nationalité :</span> {{ $video->nationality }}</p>
             <p class="text-xl"><span class="font-bold">Année de création :</span> {{ $video->year_created }}</p>
-            <p class="text-xl"><span class="font-bold">Acteurs :</span> {{ $video->actors }}</p>
+            {{-- <p class="text-xl"><span class="font-bold">Acteurs :</span> {{ $video->actors }}</p> --}}
 
-            {{-- @foreach ($video->nom_actors as $nom_actor)
+            @forelse ($video->nom_actors as $actor)
                 <div class="flex space-x-5">
-                    <p class="text-xl block">Acteurs :</p>
-                    <p>{{ $nom_actor->name }}</p>
-                </div>
-            @endforeach --}}
-            {{-- @forelse ($video->nom_actors as $nom_actor)
-                <div class="flex space-x-5">
-                    <p class="text-xl block">Acteurs :</p>
-                    <p>{{ $nom_actor->name }}</p>
+                    <span class="text-xl"> {{ $actor->name }} </span>
                 </div>
             @empty
                 <p class="text-xl">Acteurs inconnus</p>
-            @endforelse --}}
+            @endforelse
 
         </div>
     </div>
     @auth
         <div class=" flex mx-44 space-x-6 mt-5">
             <x-btn-delete :video="$video" />
-            <a href="{{ $video->id }}/edit" class="btn btn-success">Modifier</a>
+            <a href="{{ route ('videos.edit', $video->id) }}" class="btn btn-success">Modifier</a>
         </div>
         <div class="mx-44 space-x-6 mt-20 bg-gray-400 p-5">
             <h2 class="text-xl font-bold pl-7 pb-3">Ajouter un acteur</h2>

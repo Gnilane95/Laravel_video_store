@@ -8,6 +8,7 @@
         </h1>
         <div class="py-12">
             @auth
+            <a href="{{ route('videos.create') }}" class="{{ $styleLink }}">Liste des vidéos</a>
                 <a href="{{ route('category.home') }}" class="{{ $styleLink }}">Liste des catégories</a>
             @endauth
         </div>

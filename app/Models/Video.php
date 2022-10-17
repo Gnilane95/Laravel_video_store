@@ -11,7 +11,7 @@ class Video extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function actors()
+    public function nom_actors()
     {
         return $this->hasMany(NomActor::class);
     }

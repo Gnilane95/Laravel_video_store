@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function(){
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::resource('categories', ListCategoryController::class);
     Route::get('list-category', [ListCategoryController::class, 'index'])->name("category.home");
     Route::post('/list-category', [ListCategoryController::class, 'store'])->name("category.store");
     Route::get('/list-category/delete/{id}', [ListCategoryController::class, 'delete'])->name("category.delete");
